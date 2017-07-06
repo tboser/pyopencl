@@ -66,8 +66,12 @@ def get_config_schema():
         default_ldflags = default_cxxflags[:] + ["-Wl,-framework,OpenCL"]
 
     else:
-        default_libs = ["OpenCL"]
-        default_ldflags = []
+        default_libs = ["alteracl","alterahalmmd","elf","OpenCL"]
+        default_libdir = [
+            "/opt/intelFPGA/16.1/hld/board/s5_ref/linux64/lib",
+            "/opt/intelFPGA/16.1/hld/host/linux64/lib"]
+        default_ldflags = ["-Wl,--no-as-needed"]
+        default_incdir = []
 
     return ConfigSchema([
         Switch("CL_TRACE", False, "Enable OpenCL API tracing"),
